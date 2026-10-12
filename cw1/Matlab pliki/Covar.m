@@ -1,4 +1,4 @@
-function C=Covar(D,tau)
+function C=Covar(D,tau, bias)
 %oblicza wartoœæ funkcji kowariancji 'c(tau)' dla sygna³ów zawartych w D i
 %przesuniêcia czasowego równego 'tau'
 %parametry wejœciowe: D - macierz sk³adaj¹ca siê z 2 kolumn (y(n), u(n));
@@ -21,8 +21,9 @@ if (tau>=0)
 else
     Yp((1-tau):N) = Yd(1:(N+tau));  
 end
-
-CYU = (1/N)*(Ud'*Yp);                   %uwaga: normalizacja wartoœci¹ 'N'
-%CYU = (1/(N-abs(tau)))*(Ud'*Yp);        %uwaga: normalizacja wartoœci¹ 'N-|tau|'
-
+if bias==1
+    CYU = (1/N)*(Ud'*Yp);                   %uwaga: normalizacja wartoœci¹ 'N'
+else
+    CYU = (1/(N-abs(tau)))*(Ud'*Yp);        %uwaga: normalizacja wartoœci¹ 'N-|tau|'
+end
 C = CYU;
