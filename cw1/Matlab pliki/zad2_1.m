@@ -48,12 +48,11 @@ else
     disp('False')
 end
 
-Mw = 5;
-k = 0:N-1;
-Omega_k = 2*(pi/N)*k;
-tau = -Mw:Mw;
+Mw = 200;
+K = 0:N-1;
 
-Phi_14 = 1/(N*Tp) * abs(XN).^2;
+%Phi_14 = 1/(N*Tp) * abs(XN).^2;
+Phi_14 = Phi(x, Tp);
 
 function omega = w(tau, Mw)
     if abs(tau) <= Mw 
@@ -65,12 +64,16 @@ end
 
 xT = x';
 Dx = [xT, xT];
-
-Phi_16 = zeros(size(Omega_k));
-for tau_arg = tau
-Phi_16 = Phi_16 + Tp*sum(w(tau_arg, Mw)*Covar(Dx, tau_arg, 0)*exp(-1j*Omega_k*tau_arg));
+%Phi_16 = Phi_16 + Tp*sum(w(tau_arg, Mw)*Covar(Dx, tau_arg, 0)*exp(-1j*Omega_k*tau_arg));
+Phi_16 = zeros(size(K));
+for k = K
+    Omega_k = (2*pi/N)*k;
+    for tau = -Mw:Mw
+        Phi_16(k+1) = Phi_16(k+1) + w(tau, Mw)*...
+            Covar(Dx, tau, 0)*exp(-1j*Omega_k*tau);
+    end
+    Phi_16(k+1) = Phi_16(k+1)*Tp;
 end
-Phi_16 = Phi_16*Tp;
 
 
 
@@ -78,7 +81,7 @@ figure('Name', 'Density');
 hold on;
 
 subplot(2, 1, 1);
-plot(Omega_k, Phi_14, '-x');
+plot(K, Phi_14, '-x');
 
 subplot(2, 1, 2);
-plot(Omega_k, abs(Phi_16), '-x');
+plot(K, abs(Phi_16), '-x');
