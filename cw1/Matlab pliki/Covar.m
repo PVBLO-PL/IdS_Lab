@@ -21,7 +21,7 @@ if (tau>=0)
 else
     Yp((1-tau):N) = Yd(1:(N+tau));  
 end
-if bias==1
+if bias==0
     CYU = (1/N)*(Ud'*Yp);                   %uwaga: normalizacja wartoœci¹ 'N'
 else
     CYU = (1/(N-abs(tau)))*(Ud'*Yp);        %uwaga: normalizacja wartoœci¹ 'N-|tau|'

@@ -51,10 +51,10 @@ Dv = [vT, vT];
 v_auto = zeros(1, N);
 
 for tau = n
-    e_auto(1, tau+1) = Covar(De, tau, 1);
-    x_auto(1, tau+1) = Covar(Dx, tau, 1);
-    y_auto(1, tau+1) = Covar(Dy, tau, 1);
-    v_auto(1, tau+1) = Covar(Dv, tau, 1);
+    e_auto(1, tau+1) = Covar(De, tau, 0);
+    x_auto(1, tau+1) = Covar(Dx, tau, 0);
+    y_auto(1, tau+1) = Covar(Dy, tau, 0);
+    v_auto(1, tau+1) = Covar(Dv, tau, 0);
 end
 
 e_auto_flipped = [flip(e_auto(1,2:end)), e_auto];
