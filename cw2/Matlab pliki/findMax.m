@@ -1,3 +1,5 @@
+% DONT USE IT, IT IS ABSOLUTELY GARBAGE
+
 function [tg, ag] = findMax(g)
     N = size(g);
     for t = 2:N(1, 1)
