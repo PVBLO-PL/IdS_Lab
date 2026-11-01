@@ -1,17 +1,13 @@
-clc; clear; close all;
-
-Tp = 1;
-tend = 1000;
-sigma2v = 0.001;
-
-sim("AKident.mdl");
-
+% First run zad2_settings.m, then run AKident.mdl
 t = Zdata(:, 3);
-y = Zdata(:, 1);
-u = Zdata(:, 2);
+y = Zdata(:, 2);
+u = Zdata(:, 1);
 M = 20;
 U = [u, u];
 D = [y, u];
+
+ogGs = tf(0.5, [5, 11, 7, 1]);
+[og_y, og_t] = step(ogGs);
 
 figure('Name', 'Measured data')
 subplot(2, 1, 1);
@@ -43,6 +39,8 @@ for i = 0:M-1
 end
 
 
-figure('Name', 'Step response')
+figure('Name', 'step response')
 plot((0:M-1)*Tp, hM, 'b');
+hold on;
+plot(og_t, og_y, 'r');
 grid on;

@@ -1,22 +1,18 @@
-clc; clear; close all;
-
-Tp = 1;
-tend = 1000;
-sigma2v = 0;
-
-sim("AKident.mdl");
-
+% First run zad2_settings.m, then run AKident.mdl
 t = Zdata(:, 3);
-y = Zdata(:, 1);
-u = Zdata(:, 2);
+y = Zdata(:, 2);
+u = Zdata(:, 1);
 M = 20;
 U = [u, u];
 D = [y, u];
 
-figure('Name', 'Measured data')
-plot(t, u, 'b');
-hold on;
-plot(t, y, 'r');
+% figure('Name', 'Measured data')
+% plot(t, u, 'b');
+% hold on;
+% plot(t, y, 'r');
+
+ogGz = tf(2, [1, -0.7], Tp);
+[og_y, og_t] = impulse(ogGz);
 
 r_yu = zeros(M-1, 1);
 R_uu = zeros(M-1);
@@ -29,3 +25,9 @@ end
 
 gzM1 = pinv(R_uu)*r_yu;
 gzM2 = r_yu/R_uu(1, 1);
+
+figure('Name', 'Id Data');
+plot(0:M-1, gzM1, 'b');
+hold on;
+plot(og_t, og_y, 'r');
+grid on;
