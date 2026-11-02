@@ -46,8 +46,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2009-03-15T18:46:16Z</dcterms:created>
   <dc:creator>Paweł</dc:creator>
   <cp:lastModifiedBy>Paweł</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-11-01T23:37:46Z</dcterms:modified>
-  <cp:revision>1.20</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-11-02T18:52:53Z</dcterms:modified>
+  <cp:revision>1.21</cp:revision>
   <cp:version>R2026b</cp:version>
 </cp:coreProperties>
 
@@ -156,7 +156,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockDiagram.json
       }
     },
     "ConfigManagerSettings":{
-      "ModelVersionFormat":"%<AutoIncrement:1.20>",
+      "ModelVersionFormat":"%<AutoIncrement:1.21>",
       "ModifiedByFormat":"%<Auto>",
       "ModifiedDateFormat":"%<Auto>"
     },
@@ -405,7 +405,7 @@ __MWOPC_PART_BEGIN__ /simulink/plugins/sl_paper_props.json
   "PaperType":"A4",
   "PaperUnits":"centimeters",
   "SLPluginBlockParameter":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\n<!DOCTYPE boost_serialization>\n<boost_serialization signature=\"serialization::archive\" version=\"20\">\n<sl_paper_props_BlockParamValueTable class_id=\"0\" tracking_level=\"0\" version=\"0\">\n\t<count>2<\/count>\n\t<item_version>0<\/item_version>\n\t<item class_id=\"1\" tracking_level=\"0\" version=\"0\">\n\t\t<first>AKident\/G_o(s)<\/first>\n\t\t<second class_id=\"2\" tracking_level=\"0\" version=\"0\">\n\t\t\t<count>3<\/count>\n\t\t\t<item_version>0<\/item_version>\n\t\t\t<item class_id=\"3\" tracking_level=\"0\" version=\"0\">\n\t\t\t\t<first>PaperType<\/first>\n\t\t\t\t<second>A4<\/second>\n\t\t\t<\/item>\n\t\t\t<item>\n\t\t\t\t<first>PaperUnits<\/first>\n\t\t\t\t<second>centimeters<\/second>\n\t\t\t<\/item>\n\t\t\t<item>\n\t\t\t\t<first>TiledPaperMargins<\/first>\n\t\t\t\t<second>[3.225800, 3.225800, 3.225800, 3.225800]<\/second>\n\t\t\t<\/item>\n\t\t<\/second>\n\t<\/item>\n\t<item>\n\t\t<first>AKident\/G_o(z)<\/first>\n\t\t<second>\n\t\t\t<count>3<\/count>\n\t\t\t<item_version>0<\/item_version>\n\t\t\t<item>\n\t\t\t\t<first>PaperType<\/first>\n\t\t\t\t<second>A4<\/second>\n\t\t\t<\/item>\n\t\t\t<item>\n\t\t\t\t<first>PaperUnits<\/first>\n\t\t\t\t<second>centimeters<\/second>\n\t\t\t<\/item>\n\t\t\t<item>\n\t\t\t\t<first>TiledPaperMargins<\/first>\n\t\t\t\t<second>[3.225800, 3.225800, 3.225800, 3.225800]<\/second>\n\t\t\t<\/item>\n\t\t<\/second>\n\t<\/item>\n<\/sl_paper_props_BlockParamValueTable>\n<sl_paper_props_MxArrayBlockParamValueTable class_id=\"4\" tracking_level=\"0\" version=\"0\">\n\t<count>0<\/count>\n\t<item_version>0<\/item_version>\n<\/sl_paper_props_MxArrayBlockParamValueTable>\n\n<\/boost_serialization>\n\n",
-  "TiledPaperMargins":"[3.225800, 3.225800, 3.225800, 3.225800]",
+  "TiledPaperMargins":"[8.193532, 8.193532, 8.193532, 8.193532]",
   "_mw_element_name":"sl_paper_props"
 }
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml

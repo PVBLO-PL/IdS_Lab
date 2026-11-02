@@ -11,7 +11,7 @@ D = [y, u];
 % hold on;
 % plot(t, y, 'r');
 
-ogGz = tf(2, [1, -0.7], Tp);
+ogGz = tf([2, 0], [1, -0.7], Tp);
 [og_y, og_t] = impulse(ogGz);
 
 r_yu = zeros(M-1, 1);
@@ -26,8 +26,9 @@ end
 gzM1 = pinv(R_uu)*r_yu;
 gzM2 = r_yu/R_uu(1, 1);
 
-figure('Name', 'Id Data');
+figure('Name', 'Imp response');
 plot(0:M-1, gzM1, 'b');
 hold on;
-plot(og_t, og_y, 'r');
+plot(0:M-1, gzM2, 'r');
+plot(og_t, og_y, 'g');
 grid on;
