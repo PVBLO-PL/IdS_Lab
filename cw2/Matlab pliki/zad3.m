@@ -1,8 +1,8 @@
 N = size(Zdata);
 N = N(1, 1);
-k = 0:N-1;
-Omega = ((2*pi/N)*k)';
-omega = Omega/Tp;
+i = 0:N-1;
+Omega1 = ((2*pi/N)*i)';
+omega1 = Omega1/Tp;
 
 y = Zdata(:, 2);
 x = Zdata(:, 1);
@@ -16,13 +16,13 @@ Arg1 = angle(G1)*(180/pi);
 
 figure('Name', 'estymator transmitancji');
 subplot(2, 1, 1);
-semilogx(omega, Lm1, 'b');
+semilogx(omega1, Lm1, 'b');
 xlabel('omega');
 ylabel('Lm');
 grid("on");
 
 subplot(2, 1, 2);
-semilogx(omega, Arg1, 'r');
+semilogx(omega1, Arg1, 'r');
 xlabel('omega');
 ylabel('Arg');
 grid('on');
@@ -30,7 +30,11 @@ grid('on');
 %---------------------------------------
 
 Mw = 200;
-gamma = N-1;
+gamma = Mw;
+Gamma = 2*gamma - 1;
+k2 = 0:Gamma - 1;
+Omega2 = ((2*pi/Gamma)*k2)';
+omega2 = Omega2/Tp;
 tau = (-gamma:gamma)';
 ryu = zeros(length(tau), 1);
 ruu = zeros(length(tau), 1);
@@ -39,12 +43,12 @@ for t = 1:length(tau)
     ryu(t) = Covar([y, x], tau(t));
     ruu(t) = Covar([x, x], tau(t));
 end
-Phiyu = zeros(length(Omega), 1);
-Phiuu = zeros(length(Omega), 1);
+Phiyu = zeros(length(Omega2), 1);
+Phiuu = zeros(length(Omega2), 1);
 w = 0.5 * (1 + cos(tau * pi / Mw)) .* (abs(tau) < Mw);
-for k = 1:length(Omega)
-    Phiyu(k) = Tp * sum(ryu .* w .* exp(-1j*Omega(k)*tau));
-    Phiuu(k) = Tp * sum(ruu .* w .* exp(-1j*Omega(k)*tau));
+for i = 1:length(Omega2)
+    Phiyu(i) = Tp * sum(ryu .* w .* exp(-1j*Omega2(i)*tau));
+    Phiuu(i) = Tp * sum(ruu .* w .* exp(-1j*Omega2(i)*tau));
 end
 
 G2 = Phiyu./Phiuu;
@@ -53,13 +57,13 @@ Arg2 = angle(G2)*(180/pi);
 
 figure('Name', 'estymaty widmowych gęstości mocy');
 subplot(2, 1, 1);
-semilogx(omega, Lm2, 'b');
+semilogx(omega2, Lm2, 'b');
 xlabel('omega');
 ylabel('Lm');
 grid("on");
 
 subplot(2, 1, 2);
-semilogx(omega, Arg2, 'r');
+semilogx(omega2, Arg2, 'r');
 xlabel('omega');
 ylabel('Arg');
 grid('on');
