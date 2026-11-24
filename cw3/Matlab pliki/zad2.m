@@ -10,7 +10,6 @@ Go = tf(2, [0.5, 1]);
 
 u = DaneDynW(:, 1);
 yW = DaneDynW(:, 2);
-yC = DaneDynC(:, 2);
 
 N_est = floor(N/2);
 t_est = t(1:N_est);
@@ -51,3 +50,16 @@ plot(t_wer(2:end), y_predW);
 plot(t_wer, ymW);
 legend('zmierzone', 'system czasu ciągłego', ...
        'predyktor', 'model symulowany');
+
+Nv = size(ZwerW, 1)-1;
+Vp = (1/Nv)*sum((ZwerW(2:end, 2) - y_predW).^2);
+Vm = (1/Nv)*sum((y_wer - ymW).^2);
+
+epsilon = ZwerW(2:end, 2) - y_predW;
+dp = size(pN_D_W, 1);
+sigma2 = (1/(N_est-dp))*sum(epsilon.^2);
+Cov_pN_LS_W = N_est*sigma2*(PhiW_wer'*PhiW_wer)^-1;
+PU95 = zeros(dp, 2);
+for i = 1:dp
+    PU95(i, :) = pN_D_W(i) + 1.96*sqrt(Cov_pN_LS_W(i, i)/N_est)*[-1, 1];
+end
